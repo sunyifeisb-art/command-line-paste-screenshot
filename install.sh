@@ -2,13 +2,14 @@
 set -euo pipefail
 
 APP_NAME="option-e-clipboard-path"
+BUNDLE_ID="io.github.command-line-paste-screenshot.option-e-clipboard-path"
 INSTALL_DIR="$HOME/.local/share/$APP_NAME"
 BIN_DIR="$HOME/.local/bin"
 APP_DIR="$HOME/Applications/OptionEClipboardPath.app"
 APP_CONTENTS="$APP_DIR/Contents"
 APP_MACOS="$APP_CONTENTS/MacOS"
 LAUNCH_AGENTS="$HOME/Library/LaunchAgents"
-PLIST="$LAUNCH_AGENTS/com.xiangyang.$APP_NAME.plist"
+PLIST="$LAUNCH_AGENTS/$BUNDLE_ID.plist"
 SOURCE_DIR="$(cd "$(dirname "$0")" && pwd)"
 SOURCE_SWIFT="$SOURCE_DIR/$APP_NAME.swift"
 BIN="$BIN_DIR/$APP_NAME"
@@ -38,7 +39,7 @@ cat > "$APP_CONTENTS/Info.plist" <<APPPLIST
   <key>CFBundleExecutable</key>
   <string>OptionEClipboardPath</string>
   <key>CFBundleIdentifier</key>
-  <string>com.xiangyang.option-e-clipboard-path</string>
+  <string>$BUNDLE_ID</string>
   <key>CFBundleName</key>
   <string>OptionEClipboardPath</string>
   <key>CFBundleDisplayName</key>
@@ -66,7 +67,7 @@ cat > "$PLIST" <<PLIST
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.xiangyang.$APP_NAME</string>
+  <string>$BUNDLE_ID</string>
   <key>ProgramArguments</key>
   <array>
     <string>$APP_BIN</string>
@@ -86,7 +87,7 @@ PLIST
 launchctl bootout "gui/$(id -u)" "$PLIST" >/dev/null 2>&1 || true
 pgrep -x OptionEClipboardPath >/dev/null 2>&1 && pkill -x OptionEClipboardPath || true
 launchctl bootstrap "gui/$(id -u)" "$PLIST"
-launchctl enable "gui/$(id -u)/com.xiangyang.$APP_NAME"
+launchctl enable "gui/$(id -u)/$BUNDLE_ID"
 
 cat <<MSG
 已安装并启动 Option+E 剪贴板路径输出脚本。

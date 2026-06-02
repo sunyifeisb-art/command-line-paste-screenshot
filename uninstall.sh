@@ -2,7 +2,7 @@
 set -euo pipefail
 
 APP_NAME="option-e-clipboard-path"
-PLIST="$HOME/Library/LaunchAgents/com.xiangyang.$APP_NAME.plist"
+PLIST="$HOME/Library/LaunchAgents/io.github.command-line-paste-screenshot.$APP_NAME.plist"
 
 launchctl bootout "gui/$(id -u)" "$PLIST" >/dev/null 2>&1 || true
 rm -f "$PLIST"
