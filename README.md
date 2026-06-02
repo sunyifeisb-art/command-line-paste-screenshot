@@ -43,6 +43,7 @@ cd command-line-paste-screenshot
 
 - 编译 Swift 源码
 - 生成 `~/Applications/OptionEClipboardPath.app`
+- 创建截图保存目录 `~/Pictures/截图`
 - 注册 LaunchAgent，让它登录后自动在后台运行
 
 ## 权限授权
@@ -76,6 +77,8 @@ launchctl kickstart -k gui/$(id -u)/io.github.command-line-paste-screenshot.opti
 3. 按 `Option+E`
 4. 图片会保存到 `~/Pictures/截图`
 5. 当前输入框会出现刚保存的 PNG 文件路径
+
+如果电脑里还没有 `~/Pictures/截图`，安装脚本会自动创建；即使安装时没创建，第一次保存截图时程序也会自动创建。
 
 ### 输出普通文本
 

@@ -14,8 +14,9 @@ SOURCE_DIR="$(cd "$(dirname "$0")" && pwd)"
 SOURCE_SWIFT="$SOURCE_DIR/$APP_NAME.swift"
 BIN="$BIN_DIR/$APP_NAME"
 APP_BIN="$APP_MACOS/OptionEClipboardPath"
+SCREENSHOT_DIR="$HOME/Pictures/截图"
 
-mkdir -p "$INSTALL_DIR" "$BIN_DIR" "$APP_MACOS" "$LAUNCH_AGENTS"
+mkdir -p "$INSTALL_DIR" "$BIN_DIR" "$APP_MACOS" "$LAUNCH_AGENTS" "$SCREENSHOT_DIR"
 cp "$SOURCE_SWIFT" "$INSTALL_DIR/$APP_NAME.swift"
 
 xcrun swiftc "$INSTALL_DIR/$APP_NAME.swift" \
@@ -98,5 +99,5 @@ cat <<MSG
 3. 再运行一次这个安装脚本，或注销后重新登录
 
 截图会保存到：
-$HOME/Pictures/截图
+$SCREENSHOT_DIR
 MSG
